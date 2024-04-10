@@ -1,0 +1,90 @@
+﻿<Window x:Class="library.VisitorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:library"
+        mc:Ignorable="d"
+        Title="VisitorWindow" Height="450" Width="800" Background="Bisque">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#FFF3E0" />
+            <Setter Property="Foreground" Value="#4E342E" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="#FFF3E0" />
+            <Setter Property="Foreground" Value="#4E342E" />
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="#FFF3E0" />
+            <Setter Property="Foreground" Value="#4E342E" />
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Background" Value="#D7CCC8" />
+            <Setter Property="Foreground" Value="#4E342E" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#D7CCC8" />
+            <Setter Property="Foreground" Value="#4E342E" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <!-- Пошук за назвою -->
+        <TextBox x:Name="SearchTextBox" Grid.Row="0" Grid.Column="0" Margin="10,35,10,0" VerticalAlignment="Top" TextChanged="SearchTextBox_TextChanged" />
+
+        <!-- Сортування -->
+        <ComboBox x:Name="SortComboBox" Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Bottom" SelectionChanged="SortComboBox_SelectionChanged" />
+
+        <!-- Лістбокс з доступними книгами -->
+        <ListBox x:Name="AvailableBoksListBoks" Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SelectionChanged="AvailableBoksListBoks_SelectionChanged" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" Margin="0,0,10,0" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <!-- Групбокс з інформацією про книгу -->
+        <GroupBox Grid.Row="0" Grid.Column="1" Margin="10" VerticalAlignment="Stretch" >
+            <StackPanel>
+                <TextBlock x:Name="NameTextBlock" Text="Title:" />
+                <TextBlock x:Name="AuthorTextBlock" Text="Publisher:" />
+                <TextBlock x:Name="YearTextBlock" Text="Year:" />
+                <TextBlock x:Name="ISBNTextBlock" Text="ISBN:" />
+                <TextBlock x:Name="PagesTextBlock" Text="Pages:" />
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Лістбокс з взятими книгами -->
+        <ListBox x:Name="VieverListBoks" Grid.Row="1" Grid.Column="1" Margin="10"  HorizontalAlignment="Stretch" Grid.RowSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" Margin="0,0,10,0" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="Take_a_bookButton" Content="Take a book" Click="Take_a_bookButton_Click" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" />
+        <Button x:Name="Return_the_bookButton" Content="Return the book" Click="Return_the_bookButton_Click" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" />
+
+        <Label Content="Search" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Sort By" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top"/>
+        <!--<Label x:Name="testlabel1" Content="Label" HorizontalAlignment="Left" Margin="179,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="testlabel2" Content="Label" HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top"/>-->
+
+    </Grid>
+</Window>
